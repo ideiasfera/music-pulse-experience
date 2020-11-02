@@ -1,0 +1,38 @@
+# Listar todos Batimentos
+GET http://localhost:3000/beats
+Content-Type: application/json
+
+###
+
+# Cadastra um Batimento
+POST http://localhost:3000/beats
+Content-Type: application/json
+
+{
+    "beatperminute" : "80",
+    "users" : "6"
+}
+
+###
+
+# Lista Batimento Usuário
+GET http://localhost:3000/beats/6
+Content-Type: application/json
+
+###
+
+# Editar um Batimento
+PUT http://localhost:3000/beats/6
+Content-Type: application/json
+
+{
+    "beatperminute" : "90"
+}
+
+###
+
+# Deletar um Batimento
+DELETE http://localhost:3000/beats/6
+Content-Type: application/json
+
+###

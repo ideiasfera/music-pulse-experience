@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 
 const userRoute = require('./routes/user-route');
 
+const beatRoute = require('./routes/beat-route');
+
 app.use(morgan('dev'));
 app.use('/uploads', express.static('uploads'));
-app.use(bodyParser.urlencoded({ extended: false }));  // apenas dados simples
-app.use(bodyParser.json()); // json de entrada no body
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -26,7 +28,8 @@ app.use((req, res, next) => {
 
 app.use('/users', userRoute);
 
-// Quando não encontra rota, entra aqui:
+app.use('/beats', beatRoute);
+
 app.use((req, res, next) => {
     const erro = new Error('Não encontrado');
     erro.status = 404;

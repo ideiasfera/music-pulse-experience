@@ -14,13 +14,14 @@ exports.createUser = async (req, res, next) => {
 
         const hash = await bcrypt.hashSync(req.body.password, 10);
 
-        query = 'INSERT INTO users (email, password) VALUES (?,?)';
-        const results = await mysql.execute(query, [req.body.email,hash]);
+        query = 'INSERT INTO users (name, email, password) VALUES (?,?,?)';
+        const results = await mysql.execute(query, [req.body.name,req.body.email,hash]);
 
         const response = {
             message: 'Usuário criado com sucesso',
             createdUser: {
                 userId: results.insertId,
+                name: req.body.name,
                 email: req.body.email
             }
         }
